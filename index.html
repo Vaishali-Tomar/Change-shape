@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #div {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .circle {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            background-color: green;
+            box-sizing: border-box;
+        }
+
+        #shape {
+            background-color: white;
+            position: relative;
+            width: 75px;
+            height: 75px;
+            left: 38px;
+            top: 40px;
+        }
+
+        #change-color {
+            padding: 3px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #change-shape {
+            padding: 3px;
+            text-align: center;
+            margin-top: 20px
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div">
+        <div class="circle">
+            <div id="shape"></div>
+        </div>
+        <div id="change-color">
+            <button id="chColor" onclick="changeColor">change color</button>
+        </div>
+        <div id="change-shape">
+            <button id="chShape">change shape</button>
+        </div>
+    </div>
+    <script>
+        const circle = document.querySelector('.circle');
+        const changeColorBtn = document.getElementById('chColor');
+        const changeShapeBtn = document.getElementById('chShape');
+
+        const colors = ['red', 'blue', 'yellow', 'purple', 'orange'];
+
+        function changeColor() {
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            circle.style.backgroundColor = randomColor;
+        }
+
+        function changeShape() {
+            let shape = document.getElementById('shape');
+            let currentRadius = parseFloat(shape.style.borderRadius);
+            if (currentRadius === 0) {
+                shape.style.borderRadius = '50%';
+                shape.style.backgroundColor = "red";
+            } else {
+                shape.style.borderRadius = '0';
+                shape.style.backgroundColor = "white";
+
+            }
+        }
+
+        changeColorBtn.addEventListener('click', changeColor);
+        changeShapeBtn.addEventListener('click', changeShape);
+    </script>
+</body>
+
+</html>
